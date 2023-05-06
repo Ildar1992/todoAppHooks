@@ -4,19 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 import './Task.css';
 const Task = (props) => {
-  const {
-    id,
-    task,
-    completed,
-    edit,
-    date,
-    deleteItem,
-    onToggleCompleted,
-    editTask,
-    onSubmitEdit,
-    changeTimerValue,
-    timerProp,
-  } = props;
+  const { id, task, completed, edit, date, deleteItem, onToggleCompleted, editTask, onSubmitEdit, timerProp } = props;
 
   const [dataText, setDataText] = useState(null);
   const [value, setValue] = useState(task);
@@ -39,7 +27,6 @@ const Task = (props) => {
     }, 1000);
     return () => {
       clearInterval(interval);
-      changeTimerValue(id, timer);
     };
   }, [pause, timer]);
 

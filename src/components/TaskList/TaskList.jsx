@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Task from '../Task/Task';
 import './TaskList.css';
 
-const TaskList = ({ todoData, deleteItem, onToggleCompleted, editTask, onSubmitEdit, changeTimerValue }) => {
+const TaskList = ({ todoData, deleteItem, onToggleCompleted, editTask, onSubmitEdit }) => {
   return (
     <ul className="todo-list">
       {todoData.map((el) => {
@@ -20,7 +20,6 @@ const TaskList = ({ todoData, deleteItem, onToggleCompleted, editTask, onSubmitE
             onToggleCompleted={() => onToggleCompleted(el.id)}
             editTask={() => editTask(el.id)}
             onSubmitEdit={(event) => onSubmitEdit(event, el.id)}
-            changeTimerValue={(id, timer) => changeTimerValue(id, timer)}
             timerProp={el.timer}
           />
         );
@@ -30,7 +29,7 @@ const TaskList = ({ todoData, deleteItem, onToggleCompleted, editTask, onSubmitE
 };
 TaskList.defaultProps = {
   todoData: [],
-  onDeleted: () => {},
+  deleteItem: () => {},
   onToggleCompleted: () => {},
   editTask: () => {},
   onSubmitEdit: () => {},
@@ -39,7 +38,7 @@ TaskList.defaultProps = {
 
 TaskList.propTypes = {
   todoData: PropTypes.arrayOf(PropTypes.object),
-  onDeleted: PropTypes.func,
+  deleteItem: PropTypes.func,
   onToggleCompleted: PropTypes.func,
   editTask: PropTypes.func,
   onSubmitEdit: PropTypes.func,

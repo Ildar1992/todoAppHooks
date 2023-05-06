@@ -20,9 +20,25 @@ const App = () => {
     });
   };
 
+  const onSubmitEdit = (event, id) => {
+    event.preventDefault();
+    setTodoData((todoData) => {
+      const index = todoData.findIndex((data) => data.id === id);
+      const oldData = todoData[index];
+      const newData = {
+        ...oldData,
+        edit: !oldData.edit,
+        task: event.target[0].value,
+      };
+      const newArray = [...todoData.slice(0, index), newData, ...todoData.slice(index + 1)];
+      return newArray;
+    });
+  };
+
   const deleteItem = (id) => {
     setTodoData((todoData) => {
-      const newArray = todoData.filter((item) => item.id !== id);
+      const index = todoData.findIndex((el) => el.id === id);
+      const newArray = [...todoData.slice(0, index), ...todoData.slice(index + 1)];
       return newArray;
     });
   };
@@ -69,33 +85,6 @@ const App = () => {
       return newData;
     });
   };
-  const onSubmitEdit = (event, id) => {
-    event.preventDefault();
-    setTodoData((todoData) => {
-      const index = todoData.findIndex((data) => data.id === id);
-      const oldData = todoData[index];
-      const newData = {
-        ...oldData,
-        edit: !oldData.edit,
-        task: event.target[0].value,
-      };
-      const newArray = [...todoData.slice(0, index), newData, ...todoData.slice(index + 1)];
-      return newArray;
-    });
-  };
-
-  const changeTimerValue = (id, value) => {
-    setTodoData((todoData) => {
-      const index = todoData.findIndex((el) => {
-        return el.id === id;
-      });
-      const oldItem = todoData[index];
-      if (typeof oldItem === 'undefined') return;
-      const newItem = { ...oldItem, timer: value };
-      const newArray = [...todoData.slice(0, index), newItem, ...todoData.slice(index + 1)];
-      return newArray;
-    });
-  };
 
   const completedCount = todoData.filter((el) => !el.completed).length;
 
@@ -109,7 +98,6 @@ const App = () => {
           onToggleCompleted={onToggleCompleted}
           editTask={editTask}
           onSubmitEdit={onSubmitEdit}
-          changeTimerValue={changeTimerValue}
         />
 
         <Footer completedCount={completedCount} onFilterChange={onFilterChange} clearCompleted={clearCompleted} />
