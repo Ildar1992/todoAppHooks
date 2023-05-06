@@ -85,7 +85,6 @@ const App = () => {
       return newData;
     });
   };
-
   const completedCount = todoData.filter((el) => !el.completed).length;
 
   return (
