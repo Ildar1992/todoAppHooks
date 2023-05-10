@@ -33,6 +33,7 @@ const Task = (props) => {
   const setTaskValue = (event) => {
     setValue(event.target.value);
   };
+
   const timerSet = () => {
     if (timer < 0) return '00:00';
     return `${Math.floor(timer / 60)
