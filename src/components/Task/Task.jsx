@@ -63,14 +63,14 @@ const Task = (props) => {
         <label htmlFor={id}>
           <span className="title">{task}</span>
           <div className="description">
-            <button className="icon icon-play" onClick={onPlay}></button>
-            <button className="icon icon-pause" onClick={onPause}></button>
+            <button type="button" className="icon icon-play" onClick={onPlay} title="play"></button>
+            <button type="button" className="icon icon-pause" onClick={onPause} title="pause"></button>
             <span className="timer">{timerSet()}</span>
           </div>
           <span className="created">{dataText}</span>
         </label>
-        <button className="icon icon-edit" onClick={editTask}></button>
-        <button className="icon icon-destroy" onClick={deleteItem}></button>
+        <button type="button" className="icon icon-edit" onClick={editTask} title="edit"></button>
+        <button type="button" className="icon icon-destroy" onClick={deleteItem} title="destroy"></button>
       </div>
     </li>
   );

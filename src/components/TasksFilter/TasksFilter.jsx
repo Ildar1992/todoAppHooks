@@ -16,6 +16,7 @@ const TasksFilter = ({ onFilterChange }) => {
       {buttons.map(({ name, task }) => (
         <li key={name}>
           <button
+            type="button"
             className={filter === name ? 'selected' : ''}
             onClick={() => {
               onFilterChange(name);
